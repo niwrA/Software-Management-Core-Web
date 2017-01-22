@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ProductsShared;
+//using SoftwareManagementEFCoreRepository;
+using CommandsShared;
 
 namespace SoftwareManagementCoreWeb
 {
@@ -29,6 +32,10 @@ namespace SoftwareManagementCoreWeb
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddTransient<IProductStateRepository, Test.ProductStateRepositoryFake>();
+            services.AddTransient<ICommandRepository, Test.CommandStateRepositoryFake>();
+            services.AddTransient<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
